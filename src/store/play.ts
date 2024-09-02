@@ -53,7 +53,8 @@ async function getTTSData(
   ipcRenderer.send("log.info", SSML);
   console.log(SSML);
   if (api == 1) {
-    const result = await retrySpeechInvocation(SSML, retryCount, retryInterval * 1000);
+    // const result = await retrySpeechInvocation(SSML, retryCount, retryInterval * 1000);
+    const result = await ipcRenderer.invoke("speech", SSML);
     return result;
   } else if (api == 2) {
     const result = await ipcRenderer.invoke("edgeApi", SSML);
